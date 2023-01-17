@@ -1,7 +1,10 @@
 import React from 'react'
 
-export const QuestionsBlock = () => {
+export const QuestionsBlock = ({ quizItem }) => {
   return (
-    <div></div>
+    <>
+      <h2 id={quizItem.id} className='question-title'>{quizItem.text}</h2>
+      <div className='questions-container'></div>
+    </>
   )
 }

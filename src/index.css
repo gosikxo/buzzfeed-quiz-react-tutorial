@@ -19,7 +19,31 @@ h1 {
     text-align: left;
 }
 
+h2 {
+    font-size: 3.5rem;
+    line-height: 1.05;
+    text-align: center;
+}
+
 p {
     font-size: 1.125rem;
     line-height: 1.2;
+}
+
+.question-title {
+    width: 600px;
+    height: 210px;
+    background-color: rgb(102, 69, 221);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.questions-container {
+    margin: 16px 0 23px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
