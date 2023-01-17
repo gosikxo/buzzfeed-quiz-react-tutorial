@@ -1,7 +1,14 @@
 import React from 'react'
 
-export const QuestionBlock = () => {
+export const QuestionBlock = ({ question }) => {
   return (
-    <div></div>
+    <button className='question-block'>
+      <img src={question.image} />
+      <h3>{question.text}</h3>
+      <p>
+        <a href={question.image}>{question.credit} </a>
+        <a href='https://unsplash.com/'>Unsplash</a>
+      </p>
+    </button>
   )
 }
