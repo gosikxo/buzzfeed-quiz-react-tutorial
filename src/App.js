@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import { Title } from "./components/Title"
 import { QuestionsBlock } from "./components/QuestionsBlock"
+import { AnswerBlock } from "./components/AnswerBlock"
 
 const App = () => {
-  const [quiz, setQuiz] = useState(false)
+  const [quiz, setQuiz] = useState(null)
   const [chosenAnswerItems, setChosenAnswerItems] = useState([])
-  const [unasweredQuestionIds, setUnasweredQuestionIds] = useState([null])
+  const [unasweredQuestionIds, setUnasweredQuestionIds] = useState(null)
+  const [showAnswer, setShowAnswer] = useState(false)
 
   const fetchData = async () => {
     try {
@@ -30,18 +32,21 @@ const App = () => {
     if (unasweredQuestionIds) {
       if (unasweredQuestionIds.length <= 0 && chosenAnswerItems.length >= 1) {
         // scroll to answer block
+        setShowAnswer(true)
+        const answerBlock = document.getElementById('answer-block')
+        answerBlock?.scrollIntoView({ behavior: 'smooth' })
       }
       // scroll to highest unasweredQuestionId
       const highestId = Math.min(...unasweredQuestionIds)
       const highestElement = document.getElementById(highestId)
       highestElement?.scrollIntoView({ behavior: "smooth" })
     }
-  }, [unasweredQuestionIds, chosenAnswerItems])
+  }, [unasweredQuestionIds, showAnswer, chosenAnswerItems])
 
   return (
     <div className="app">
       <Title title={quiz?.title} subtitle={quiz?.subtitle} />
-      {quiz && quiz.content.map(contentItem => (
+      {quiz?.content?.map(contentItem => (
         <QuestionsBlock
           key={contentItem.id}
           quizItem={contentItem}
@@ -51,6 +56,12 @@ const App = () => {
           unasweredQuestionIds={unasweredQuestionIds}
         />
       ))}
+      {showAnswer && (
+        <AnswerBlock
+          answerOptions={quiz?.answers}
+          chosenAnswers={chosenAnswerItems}
+        />
+      )}
     </div>
   );
 }
