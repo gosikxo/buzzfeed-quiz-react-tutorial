@@ -26,8 +26,17 @@ const App = () => {
     setUnasweredQuestionIds(unansweredIds)
   }, [quiz])
 
-  console.log(unasweredQuestionIds)
-  console.log(chosenAnswerItems)
+  useEffect(() => {
+    if (unasweredQuestionIds) {
+      if (unasweredQuestionIds.length <= 0 && chosenAnswerItems.length >= 1) {
+        // scroll to answer block
+      }
+      // scroll to highest unasweredQuestionId
+      const highestId = Math.min(...unasweredQuestionIds)
+      const highestElement = document.getElementById(highestId)
+      highestElement?.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [unasweredQuestionIds, chosenAnswerItems])
 
   return (
     <div className="app">

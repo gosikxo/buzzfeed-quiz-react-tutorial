@@ -8,6 +8,7 @@ export const QuestionsBlock = ({
   setUnasweredQuestionIds,
   unasweredQuestionIds
 }) => {
+  
   return (
     <>
       <h2 id={quizItem.id} className='question-title'>{quizItem.text}</h2>
