@@ -5,7 +5,7 @@ import { QuestionsBlock } from "./components/QuestionsBlock"
 const App = () => {
   const [quiz, setQuiz] = useState(false)
   const [chosenAnswerItems, setChosenAnswerItems] = useState([])
-  const [unasweredQuestionIds, setUnasweredQuestionIds] = useState(null)
+  const [unasweredQuestionIds, setUnasweredQuestionIds] = useState([null])
 
   const fetchData = async () => {
     try {
